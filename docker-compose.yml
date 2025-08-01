@@ -1,0 +1,10 @@
+services:
+  dev:
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /app/
+      - type: volume
+        target: /app/node_modules
+    restart: unless-stoppped
