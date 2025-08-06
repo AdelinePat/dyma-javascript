@@ -294,3 +294,5 @@ function powerBy(power) {
 const powerByTwo = powerBy(2);
 console.log(powerBy.power);
 console.log(powerByTwo(3));
+
+///////////////// ARRAYS ///////////////////

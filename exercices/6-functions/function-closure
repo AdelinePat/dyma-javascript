@@ -1,0 +1,11 @@
+export const creerMultiplicateur = (multiplicateur) => {
+    return (nombre) => {
+        return nombre * multiplicateur;
+    }
+}
+
+const doubler = creerMultiplicateur(2);
+const tripler = creerMultiplicateur(3);
+const quadrupler = creerMultiplicateur(4);
+
+console.log(doubler(2), tripler(2), quadrupler(2));

@@ -8,3 +8,5 @@ export function lePlusGrand(a,b,c) {
         return c;
     }
 }
+
+console.log(lePlusGrand(3,5,12))
