@@ -16,7 +16,6 @@ export function testFn(nombre) {
   return nombre;
 }
 
-
 export function testFn2(nombre) {
   // Déclarez en dessous :
   let number = +nombre;

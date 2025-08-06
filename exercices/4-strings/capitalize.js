@@ -3,9 +3,9 @@ export function testFn(chaine) {
   let newString = "";
   for (let i = 0; i < chaine.length; i++) {
     if (i === 0) {
-        newString += chaine[i].toUpperCase();
+      newString += chaine[i].toUpperCase();
     } else {
-        newString += chaine[i].toLowerCase()
+      newString += chaine[i].toLowerCase();
     }
   }
   chaine = newString;
