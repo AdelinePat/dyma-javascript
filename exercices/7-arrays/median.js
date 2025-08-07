@@ -1,3 +1,4 @@
+//// arr.toSorted( code here ) === arr.slice().sort( code here )
 export function obtenirMediane(arr) {
   const newArr = arr
     .map((value) => {
@@ -16,3 +17,20 @@ export function obtenirMediane(arr) {
 
   return newArr;
 }
+
+
+console.log(
+  obtenirMediane([
+    [2, 14, 16, 15, 5],
+    [7, 2, 4],
+  ])
+);
+console.log(
+  obtenirMediane([
+    [12, 14, 12, 13],
+    [2, 14, 1, 5],
+  ])
+);
+
+// 5 10 12 14 16
+//  2 4 7

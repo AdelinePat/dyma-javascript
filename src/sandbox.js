@@ -296,3 +296,62 @@ console.log(powerBy.power);
 console.log(powerByTwo(3));
 
 ///////////////// ARRAYS ///////////////////
+/// EDIT ARRAY ///
+
+const arr = ["UN", "DEUX", "TROIS"];
+const a = arr.map((value) => value.toLowerCase());
+console.log(a);
+console.log(arr === a);
+console.log(typeof arr, typeof a);
+
+const array = [
+  {
+    quantity: 5,
+    name: "SHOES",
+  },
+  {
+    quantity: 10,
+    name: "SHIRTS",
+  },
+  {
+    quantity: 12,
+    name: "PANTS",
+  },
+];
+
+const b = array
+  .filter((value) => value.quantity >= 10)
+  .map((el) => ({
+    ...el,
+    name: el.name.toLowerCase(),
+  }));
+
+// filter callback to filter only what we want, then map on the result get the object with spread operator and rename (overwrite) the value of the key
+
+console.log("b : ", b);
+console.log("///////////");
+//// REDUCE METHOD ON ARRAY ////
+const cart = [
+  {
+    quantity: 2,
+    name: "SHOES",
+    price: 50
+  },
+  {
+    quantity: 1,
+    name: "SHIRTS",
+    price: 20
+  },
+  {
+    quantity: 2,
+    name: "PANTS",
+    price: 70
+  },
+];
+
+let accumulatorInitValue = 0;
+const total = cart.reduce((accumulator, element, index) => {
+    return accumulator += (element.price * element.quantity);
+}, accumulatorInitValue)
+
+console.log(total);
