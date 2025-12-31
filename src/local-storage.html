@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercice événement storage</title>
+    <script type="module" src="./localStorage.js"></script>
+  </head>
+  <body>
+    <div class="alert"></div>
+    <form action="">
+      <input
+        type="text"
+        name="full-name"
+        id="full-name"
+        placeholder="fullname"
+      />
+      <input type="email" name="email" id="email" placeholder="email" />
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        maxlength="11"
+        placeholder="phone"
+      />
+      <input type="date" name="dob" id="dob" placeholder="date" />
+      <select name="security" id="security" tabindex="0">
+        …
+      </select>
+      <input
+        type="text"
+        name="security-answer"
+        id="security-answer"
+        placeholder="security-answer"
+      />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="password"
+      />
+      <textarea
+        name="description"
+        id="description"
+        placeholder="Décrivez-vous en environ 100 mots"
+      ></textarea>
+      <button type="submit" id="submit" value="">ENVOYER</button>
+      <button id="clear" value="">REINITIALISER</button>
+    </form>
+  </body>
+</html>
