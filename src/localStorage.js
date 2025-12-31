@@ -66,6 +66,10 @@ document.onload = retrieveFormData();
 window.addEventListener("storage", (event) => {
   const value = JSON.parse(event.newValue);
   for (const element of formElements) {
-    element.value = value[element.id];
+    if (value) {
+      element.value = value[element.id];
+    } else {
+      element.value = "";
+    }
   }
 });
