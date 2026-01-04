@@ -769,9 +769,7 @@ const todo = {
 
 // xhr.send();
 
-
 // ############# Date ########
-
 
 const today = new Date();
 console.log(today);
@@ -824,7 +822,6 @@ console.log(
     minute: "2-digit",
   })
 );
-
 
 // ############# Location & history ########
 console.log(location);
@@ -993,7 +990,6 @@ console.log(foo2);
 console.log(foo.__proto__ === foo2.__proto__); // TRUE !
 
 console.log(Object.getPrototypeOf(foo) === foo.__proto__); // TRUE !
-
 
 // ############# MAP ########
 const mymap = new Map();
@@ -1286,3 +1282,256 @@ function extractCookies2() {
 }
 
 console.log(cookies);
+
+// CANVAS
+// Draw a line
+ctx.beginPath();
+
+ctx.moveTo(100, 100);
+
+ctx.lineTo(400, 400);
+// ctx.lineTo(700, 50);
+// ctx.arcTo(600, 600, 410, 50, 100);
+ctx.arcTo(500, 500, 600, -200, 30);
+ctx.lineTo(500, 200);
+
+ctx.fillStyle = "rgba(0,0,0,0.5)";
+
+ctx.lineWidth = 15;
+ctx.strokeStyle = "red";
+ctx.lineCap = "round";
+ctx.lineJoin = "round";
+ctx.stroke();
+ctx.fill();
+
+ctx.closePath();
+
+// CANVAS' CURVES
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+ctx.strokeStyle = "black";
+ctx.fillStyle = "lightblue";
+
+// ctx.beginPath();
+// ctx.arc(400, 400, 300, 0, Math.PI, true);
+// // x center, y center, radius,  start angle, end angle, clockwise
+// ctx.closePath();
+// ctx.fill();
+// ctx.stroke();
+
+ctx.beginPath();
+ctx.strokeStyle = "green";
+ctx.moveTo(300, 300);
+ctx.bezierCurveTo(500, 400, 200, 600, 400, 700);
+ctx.stroke();
+ctx.closePath();
+
+ctx.beginPath();
+ctx.strokeStyle = "red";
+ctx.moveTo(300, 300);
+ctx.quadraticCurveTo(600, 600, 400, 700);
+ctx.stroke();
+ctx.closePath();
+
+// CANVAS' GRADIENT
+ctx.rect(200, 100, 400, 400);
+
+const gradient = ctx.createLinearGradient(400, 100, 400, 500);
+gradient.addColorStop(0, "blue");
+gradient.addColorStop(1, "red");
+
+ctx.fillStyle = gradient;
+ctx.fill();
+
+// ############# LOCALSTORAGE ########
+// localStorage.setItem("theme", "dark");
+// localStorage.setItem("img", "a picture");
+console.log(localStorage.getItem("theme"));
+console.log(localStorage.key(0));
+
+for (let key in localStorage) {
+  if (localStorage.hasOwnProperty(key)) {
+    console.log(key, " : ", localStorage.getItem(key));
+  }
+}
+
+// ############# BUFFER ########
+const buffer = new ArrayBuffer(16);
+console.log(buffer);
+const typedArray = new Uint16Array(buffer);
+typedArray[0] = 255;
+typedArray[2] = 127;
+console.log(typedArray);
+// console.log(buffer);
+
+// ############# DRAG AND DROP FIRST VERSION ########
+
+const rightList = document.querySelector(".list-right");
+const leftList = document.querySelector(".list-left");
+let draggable;
+
+document.addEventListener("dragstart", (event) => {
+  console.log("drastart : ", event);
+  event.target.classList.add("drag");
+  draggable = event.target;
+  setTimeout(() => {
+    event.target.classList.remove("drag");
+  });
+  console.log(draggable);
+  console.log(draggable === event.target);
+});
+
+// document.addEventListener("drag", (event) => {
+//   console.log("drag : ", event);
+// });
+
+document.addEventListener("dragend", (event) => {
+  console.log("dragend : ", event);
+});
+
+rightList.addEventListener("dragenter", (event) => {
+  rightList.classList.add("drop");
+  console.log("dragenter : ", event);
+});
+
+rightList.addEventListener("dragleave", (event) => {
+  console.log("dragleave : ", event);
+  rightList.classList.remove("drop");
+});
+rightList.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  // console.log("dragover : ", event);
+});
+
+rightList.addEventListener("drop", (event) => {
+  event.target.appendChild(draggable);
+  rightList.classList.remove("drop");
+  console.log("drop : ", event);
+});
+
+leftList.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+leftList.addEventListener("drop", (event) => {
+  event.target.appendChild(draggable);
+  console.log("drop : ", event);
+});
+
+// ############# DRAG AND DROP SECOND VERSION ########
+
+const rightList = document.querySelector(".list-right");
+const leftList = document.querySelector(".list-left");
+
+document.addEventListener("dragstart", (event) => {
+  event.dataTransfer.effectAllowed = "copy";
+  event.dataTransfer.setData("id", event.target.id);
+  console.log(event.target.id);
+  event.target.classList.add("drag");
+  setTimeout(() => {
+    event.target.classList.remove("drag");
+  });
+});
+
+// document.addEventListener("drag", (event) => {
+//   console.log("drag : ", event);
+// });
+
+document.addEventListener("dragend", (event) => {
+  console.log("dragend : ", event);
+});
+
+rightList.addEventListener("dragenter", (event) => {
+  rightList.classList.add("drop");
+  console.log("dragenter : ", event);
+});
+
+rightList.addEventListener("dragleave", (event) => {
+  console.log("dragleave : ", event);
+  rightList.classList.remove("drop");
+});
+rightList.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+rightList.addEventListener("drop", (event) => {
+  event.dataTransfer.drop = "copy";
+  const id = event.dataTransfer.getData("id");
+  console.log("id : ", id);
+  // const li = document.querySelector(`#${id}`)
+  const li = document.getElementById(id);
+  event.target.appendChild(li);
+  rightList.classList.remove("drop");
+  console.log("drop : ", event);
+});
+
+// ############# DRAG AND DROP FROM FILESYSTEM ########
+
+const rightList = document.querySelector(".list-right");
+const leftList = document.querySelector(".list-left");
+let draggable;
+
+document.addEventListener("dragstart", (event) => {
+  draggable = event.target;
+  event.target.classList.add("drag");
+  setTimeout(() => {
+    event.target.classList.remove("drag");
+  });
+});
+
+// document.addEventListener("drag", (event) => {
+//   console.log("drag : ", event);
+// });
+
+document.addEventListener("dragend", (event) => {
+  console.log("dragend : ", event);
+});
+
+rightList.addEventListener("dragenter", (event) => {
+  rightList.classList.add("drop");
+  console.log("dragenter : ", event);
+});
+
+rightList.addEventListener("dragleave", (event) => {
+  console.log("dragleave : ", event);
+  rightList.classList.remove("drop");
+});
+rightList.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+rightList.addEventListener("drop", (event) => {
+  event.target.appendChild(draggable);
+  rightList.classList.remove("drop");
+  console.log("drop : ", event);
+});
+
+window.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+window.addEventListener("drop", (event) => {
+  event.preventDefault();
+});
+
+leftList.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+leftList.addEventListener("drop", (event) => {
+  Array.from(event.dataTransfer.files).forEach((file) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onloadend = () => {
+      const image = new Image();
+      image.src = fileReader.result;
+      const li = document.createElement("li");
+      li.appendChild(image);
+      console.log(li);
+      leftList.appendChild(li);
+    };
+    console.log(file);
+  });
+  console.log(event.dataTransfer);
+  event.preventDefault();
+});

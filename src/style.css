@@ -1,28 +1,103 @@
-body {
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* body {
   min-height: 100vh;
   min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
-div {
+/* before drag and drop*/
+/* div {
   width: 200px;
   height: 200px;
   border-radius: 20px;
   background-color: #eee;
-}
+} */
 
 /* .red {
   background-color: red;
 } */
 
-
-.red {
+/* .red {
   color: red;
   letter-spacing: 0.3rem;
   font-weight: 500;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+ */
 
+/* drag and drop with api*/
+/* ul {
+  list-style: none;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.list {
+  flex: 1 1 50%;
+  padding: 5px;
+}
+
+.list-left {
+  background: #f3a683;
+}
+
+.list-right {
+  background: #778beb;
+}
+
+li {
+  background: #303952;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 5px;
+}
+
+.drag {
+  background: #6c5ce7;
+}
+
+.drop {
+  box-shadow: 0px 0px 25px white;
+} */
+
+/* drag and drop without api*/
+.border {
+  border: 1px solid red;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.block {
+  flex: 1 1 50%;
+  padding: 5px;
+}
+
+.left {
+  background: #f3a683;
+}
+
+.right {
+  background: #778beb;
+}
